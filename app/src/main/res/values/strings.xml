@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Peanuts Wifi</string>
+
+
+    <string name="action_settings">Automation settings</string>
+    <string name="action_settings2">Others</string>
+    <string name="ssid">SSID</string>
+    <string name="passwd">password</string>
+    <string name="connect">Connect</string>
+    <string name="clear">Clear</string>
+    <string name="cur_ssid">Current SSID: %1$s</string>
+    <string name="cur_bssid">Current BSSID: </string>
+    <string name="cur_speed">Current Speed: </string>
+    <string name="cur_ip">Current IP: </string>
+
+</resources>

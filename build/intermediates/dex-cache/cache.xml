@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\PeanutsWifi APP\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="D:\PeanutsWifi APP\app\build\intermediates\pre-dexed\debug\classes-ed897c53555c4e45f1d8e0bd65d6f43ebe1da98f.jar" />
+    </item>
+    <item
+        jar="D:\PeanutsWifi APP\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="D:\PeanutsWifi APP\app\build\intermediates\pre-dexed\debug\classes-07fd43dbc236a6baa510c8a8abbab8514e1d1306.jar" />
+    </item>
+    <item
+        jar="D:\PeanutsWifi APP\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="D:\PeanutsWifi APP\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-367aa4d5df4e003fede816543b19d708a1dcfe1f.jar" />
+    </item>
+    <item
+        jar="D:\PeanutsWifi APP\app\src\androidTest\java\robotium-solo-5.0.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d4edea7767f3c98a38d73761709d4bacf20eac5e">
+        <dex dex="D:\PeanutsWifi APP\app\build\intermediates\pre-dexed\debug\robotium-solo-5.0.1-dc617153f39bde7324cb6953a9e1a1805cf1957d.jar" />
+    </item>
+    <item
+        jar="C:\Users\jac-pc2\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="D:\PeanutsWifi APP\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-1a4ead0392e8f7e9d3f98cfe98482cfcde1b1b6f.jar" />
+    </item>
+
+</items>
