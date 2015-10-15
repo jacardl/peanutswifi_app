@@ -148,13 +148,19 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
             btn_conn.setEnabled(false);
             btn_conn.setText("Testing...");
             timer.schedule(new TimerTask() {
-                int i = Integer.valueOf(pref_count).intValue() - 1;
-//                int i = 1;
+                int x = Integer.valueOf(pref_count).intValue();
                 @Override
                 public void run() {
-                    Message msg = new Message();
-                    msg.what = i--;
-                    handler.sendMessage(msg);
+                    if(x > 0){
+                        int i = x - 1;
+                        Message msg = new Message();
+                        msg.what = i--;
+                        handler.sendMessage(msg);
+                    } else if(x == 0){
+                        Message msg = new Message();
+                        msg.what = 1;
+                        handler.sendMessage(msg);
+                    }
                 }
             }, Integer.valueOf(pref_frequency).intValue()*1000, Integer.valueOf(pref_frequency).intValue()*1000 );
         }

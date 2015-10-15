@@ -28,6 +28,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     private final String NO_EXIST = "Specified SSID isnot exist!";
     private final String IPERF = "iperf";
     private final int IPERF_TIME = 3600;
+    private final int IPERF_TIME2 = 120;
     private final int REPEAT_ASSOC = 100;
 
     public ApplicationTest() {
@@ -52,6 +53,17 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         } else {
             solo.clickOnToggleButton(IPERF);
             solo.sleep(IPERF_TIME * 1000);
+            assertEquals(true, true);
+        }
+    }
+
+    public void test_iperf2() throws Exception{
+        if(solo.isToggleButtonChecked(IPERF)) {
+            solo.sleep(IPERF_TIME2 * 1000);
+            assertEquals(true, true);
+        } else {
+            solo.clickOnToggleButton(IPERF);
+            solo.sleep(IPERF_TIME2 * 1000);
             assertEquals(true, true);
         }
     }
