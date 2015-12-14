@@ -117,7 +117,15 @@ public class WifiConnecter{
 
     }
 
+    public void clearConnect3(){
+//   shutdown wifi
+        onResume();
 
+        if (mWifiManager.isWifiEnabled()){
+            mWifiManager.setWifiEnabled(false);
+        }
+
+    }
 
     private void handleEvent(Context context, Intent intent) {
         String action = intent.getAction();

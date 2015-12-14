@@ -127,9 +127,10 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
             @Override
             public void handleMessage(Message msg){
                 super.handleMessage(msg);
-                if (msg.what > 0){
+                if (msg.what > 1){
                     connectPeriod();// cannot call mWifiConnecter.clearConnect directly
-                } else {
+                } else if (msg.what == 1) {
+                    connectPeriod(); //last connect set button text to "CONNECT"
                     timer.cancel();
                     btn_conn.setText("CONNECT");
                     btn_conn.setEnabled(true);
@@ -148,17 +149,16 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
             btn_conn.setEnabled(false);
             btn_conn.setText("Testing...");
             timer.schedule(new TimerTask() {
-                int x = Integer.valueOf(pref_count).intValue();
+                int i = Integer.valueOf(pref_count).intValue();
                 @Override
                 public void run() {
-                    if(x > 0){
-                        int i = x - 1;
+                    if(i > 0){
                         Message msg = new Message();
                         msg.what = i--;
                         handler.sendMessage(msg);
-                    } else if(x == 0){
+                    } else if(i == -1){
                         Message msg = new Message();
-                        msg.what = 1;
+                        msg.what = 2;
                         handler.sendMessage(msg);
                     }
                 }
@@ -167,7 +167,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
     }
 
     public void connectPeriod () {
-        mWifiConnecter.clearConnect2();
+        mWifiConnecter.clearConnect3();
         setCurrentSsid();
         mWifiConnecter.connect(ssid, encryp, passwd, this);
     }
