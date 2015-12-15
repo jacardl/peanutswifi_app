@@ -117,14 +117,24 @@ public class WifiConnecter{
 
     }
 
-    public void clearConnect3(){
+    public void shutDownWifi(){
 //   shutdown wifi
         onResume();
 
-        if (mWifiManager.isWifiEnabled()){
+        while (mWifiManager.isWifiEnabled()){
             mWifiManager.setWifiEnabled(false);
+
         }
 
+    }
+
+    public void turnOnWifi(){
+//        turn on wifi
+        onResume();
+
+        while (!mWifiManager.isWifiEnabled()){
+            mWifiManager.setWifiEnabled(true);
+        }
     }
 
     private void handleEvent(Context context, Intent intent) {

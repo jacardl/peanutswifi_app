@@ -162,14 +162,16 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
                         handler.sendMessage(msg);
                     }
                 }
-            }, Integer.valueOf(pref_frequency).intValue()*1000, Integer.valueOf(pref_frequency).intValue()*1000 );
+            }, Integer.valueOf(pref_frequency).intValue()*1500, Integer.valueOf(pref_frequency).intValue()*1000 );
         }
     }
 
     public void connectPeriod () {
-        mWifiConnecter.clearConnect3();
+        mWifiConnecter.shutDownWifi();
         setCurrentSsid();
-        mWifiConnecter.connect(ssid, encryp, passwd, this);
+//        mWifiConnecter.connect(ssid, encryp, passwd, this);
+        mWifiConnecter.turnOnWifi();
+        setCurrentSsid();
     }
 
     public void clearConnect(View view) {
