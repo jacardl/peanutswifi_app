@@ -3,7 +3,7 @@
 
 
     <string name="action_settings">Automation settings</string>
-    <string name="action_settings2">Others</string>
+    <string name="action_settings2">Version 1.0.2</string>
     <string name="ssid">SSID</string>
     <string name="passwd">password</string>
     <string name="connect">Connect</string>
