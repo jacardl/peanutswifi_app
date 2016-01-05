@@ -77,7 +77,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(0, SSID);
         solo.pressSpinnerItem(0, 0);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -184,7 +184,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1,KEY);
         solo.pressSpinnerItem(0, 3);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -199,7 +199,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, SPECIAL_KEY);
         solo.pressSpinnerItem(0, 3);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -214,7 +214,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 3);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -229,7 +229,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 3);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -283,7 +283,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, SPECIAL_KEY);
         solo.pressSpinnerItem(0, 3);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -298,7 +298,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 3);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -314,7 +314,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 3);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -392,7 +392,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 1);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -407,7 +407,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, SPECIAL_KEY);
         solo.pressSpinnerItem(0, 1);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -422,7 +422,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 1);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -438,7 +438,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 1);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -492,7 +492,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, SPECIAL_KEY);
         solo.pressSpinnerItem(0, 1);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -507,7 +507,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 1);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -522,7 +522,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 1);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -601,7 +601,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 4);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -616,7 +616,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, SPECIAL_KEY);
         solo.pressSpinnerItem(0, 4);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -631,7 +631,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 4);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -646,7 +646,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 4);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -700,7 +700,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, SPECIAL_KEY);
         solo.pressSpinnerItem(0, 4);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -715,7 +715,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 4);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -730,7 +730,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 4);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -808,7 +808,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 2);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -823,7 +823,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, SPECIAL_KEY);
         solo.pressSpinnerItem(0, 2);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -838,7 +838,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 2);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -853,7 +853,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 2);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -907,7 +907,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, SPECIAL_KEY);
         solo.pressSpinnerItem(0, 2);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -922,7 +922,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 2);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -932,12 +932,12 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.waitForText(CLEAR);
         solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
-        solo.enterText(0,CHINESE_SSID_5G);
+        solo.enterText(0, CHINESE_SSID_5G);
         solo.clearEditText(1);
         solo.enterText(1,KEY);
         solo.pressSpinnerItem(0,2);
         solo.clickOnButton(0);
-        boolean actual = solo.waitForText(FINISH, 0, TIMEOUT) && solo.waitForText(SUCCESS, 0, TIMEOUT);
+        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
@@ -989,7 +989,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
             solo.waitForText(CLEAR);
             solo.waitForText(SHUTDOWN);
             solo.clearEditText(0);
-            solo.enterText(0,GUEST_SSID);
+            solo.enterText(0, GUEST_SSID);
             solo.clearEditText(1);
             solo.enterText(1,KEY);
             solo.pressSpinnerItem(0,2);
