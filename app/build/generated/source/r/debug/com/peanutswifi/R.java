@@ -1334,6 +1334,7 @@ containing a value of this type.
         public static final int action_mode_bar_stub=0x7f0e002d;
         public static final int action_mode_close_button=0x7f0e0020;
         public static final int action_settings=0x7f0e0049;
+        public static final int action_settings2=0x7f0e004a;
         public static final int activity_chooser_view_content=0x7f0e0021;
         public static final int always=0x7f0e0016;
         public static final int beginning=0x7f0e0013;
