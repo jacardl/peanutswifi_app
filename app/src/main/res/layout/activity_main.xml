@@ -93,7 +93,7 @@
 
     <ToggleButton android:id="@+id/toggleButton"
         android:layout_height="wrap_content" android:layout_width="wrap_content"
-        android:text="ToggleButton" android:textOn="iperf" android:textOff="iperf"
+        android:text="@string/iperf" android:textOn="iperf" android:textOff="iperf"
         android:onClick="ToggleButtonClick"
         android:layout_below="@+id/cur_ip" />
 
