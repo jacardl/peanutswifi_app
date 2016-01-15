@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Peanuts Wifi v1.0.3</string>
+    <string name="app_name">Peanuts Wifi</string>
 
 
     <string name="action_settings">Automation settings</string>
@@ -12,6 +12,17 @@
     <string name="cur_bssid">Current BSSID: </string>
     <string name="cur_speed">Current Speed: </string>
     <string name="cur_ip">Current IP: </string>
-    <string name="iperf">ToggleButton</string>
+    <string name="iperf">iperf</string>
+    <string name="speedtest">speedtest</string>
+    <string name="version">version</string>
+
+
+    <string name="update_speed">Downlink: %s kbit/s</string>
+    <string name="update_speed_uplink">Uplink: %s kbit/s</string>
+    <string name="downlink">Downlink: 0 kbit/s</string>
+    <string name="uplink">Uplink: 0 kbit/s</string>
+    <string formatted="false" name="update_downloaded_complete">Downlink: %s kbit/s</string>
+    <string formatted="false" name="update_uploaded_complete">Uplink: %s kbit/s</string>
+    <string name="start_button">START</string>
 
 </resources>

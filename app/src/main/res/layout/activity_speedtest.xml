@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	This file is part of SpeedTest.
+
+    SpeedTest is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    SpeedTest is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with SpeedTest.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:id="@+id/downlink_speed"
+    android:text="@string/downlink"
+ android:layout_marginTop="10dip" android:textColor="@android:color/black" android:textSize="16sp"/>
+ 
+ <TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:id="@+id/uplink_speed"
+    android:text="@string/uplink"
+ android:layout_marginTop="10dip" android:textColor="@android:color/black" android:textSize="16sp"/>
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/btnStart"
+    android:text="@string/start_button"
+    android:layout_marginTop="10dip"/>
+</LinearLayout>

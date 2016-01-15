@@ -97,5 +97,32 @@
         android:onClick="ToggleButtonClick"
         android:layout_below="@+id/cur_ip" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speedtest"
+        android:id="@+id/speedtest"
+        android:layout_below="@+id/cur_ip"
+        android:layout_toEndOf="@+id/toggleButton" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toggleButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/version"
+            android:id="@+id/version"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
 
 </RelativeLayout>

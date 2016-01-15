@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -51,11 +53,13 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
     private EditText et_ssid;
     private Spinner sp_encryp;
     private Button btn_conn;
+    private Button speedtest;
 
     private TextView tv_cur_ssid;
     private TextView tv_cur_bssid;
     private TextView tv_cur_speed;
     private TextView tv_cur_ip;
+    private TextView version;
 
     private static final String[] m = {"NONE", "WPA-AES-PSK", "WPA-TKIP-PSK", "WPA2-AES-PSK", "WPA2-TKIP-PSK"};
     private ArrayAdapter<String> adapter;
@@ -111,6 +115,20 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
 //        sp_encryp.setOnItemSelectedListener(new SpinnerSelectedListener());
         sp_encryp.setSelection(0);
         sp_encryp.setVisibility(View.VISIBLE);
+
+        speedtest = (Button) findViewById(R.id.speedtest);
+
+        version = (TextView) findViewById(R.id.version);
+
+        version.setText("v" + getVersionName());
+
+        speedtest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSpeedtest = new Intent(MainActivity.this, SpeedTestLauncher.class);
+                MainActivity.this.startActivity(intentSpeedtest);
+            }
+        });
 
         setCurrentSsid();
 
@@ -271,11 +289,8 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
 
     public void ToggleButtonClick(View v) {
         final ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
-//        final EditText inputCommands = (EditText) findViewById(R.id.InputCommands);
-        //If the button is not pushed (waiting for starting a test), then a iperf task is started.
         if (toggleButton.isChecked()) {
-//            InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//            mgr.hideSoftInputFromWindow(inputCommands.getWindowToken(), 0);
+
             initIperf();
             //If a test is already running then a cancel command is issued through the iperfTask interface.
         } else {
@@ -377,9 +392,6 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
     }
 
     class IperfTask extends AsyncTask<Void, String, String> {
-        //        final TextView tv = (TextView) findViewById(R.id.OutputText);
-//        final ScrollView scroller = (ScrollView) findViewById(R.id.Scroller);
-//        final EditText inputCommands = (EditText) findViewById(R.id.InputCommands);
         final ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
 
         Process process = null;
@@ -444,13 +456,6 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
             }
             //The toggle button is switched to "off"
             toggleButton.setChecked(false);
-//            tv.append("\nOperation aborted.\n\n");
-            //The next command is used to roll the text to the bottom
-//            scroller.post(new Runnable() {
-//                public void run() {
-//                    scroller.smoothScrollTo(0, tv.getBottom());
-//                }
-//            });
         }
 
         @Override
@@ -464,16 +469,28 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-//                tv.append("\nTest is done.\n\n");
             }
             //The toggle button is switched to "off"
             toggleButton.setChecked(false);
-            //The next command is used to roll the text to the bottom
-//            scroller.post(new Runnable() {
-//                public void run() {
-//                    scroller.smoothScrollTo(0, tv.getBottom());
-//                }
-//            });
+
+        }
+
+    }
+
+    private String getVersionName() {
+
+        // 用于管理安装的apk和未安装的apk
+        PackageManager packageManager = getPackageManager();
+
+        try {
+            // 得到apk的功能清单文件:为了防止出错直接使用getPackageName()方法获得包名
+            PackageInfo packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
+
+            //返回版本名称
+            return packageInfo.versionName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
         }
     }
 }
