@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -25,6 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.peanutswifi.WifiConnecter.ActionListener;
 
 import java.io.BufferedReader;
@@ -60,22 +64,29 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
 
     private ProgressDialog mDialog;
 
-    public  Boolean pref_checkbox;
-    public  String pref_frequency;
-    public  String pref_count;
+    public Boolean pref_checkbox;
+    public String pref_frequency;
+    public String pref_count;
 
     public String ssid;
     public String passwd;
     public String encryp;
 
     IperfTask iperfTask = null;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         init();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void init() {
@@ -125,9 +136,9 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         final Handler handler = new Handler() {
 
             @Override
-            public void handleMessage(Message msg){
+            public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                if (msg.what > 1){
+                if (msg.what > 1) {
                     connectPeriod();// cannot call mWifiConnecter.clearConnect directly
                 } else if (msg.what == 1) {
                     connectPeriod(); //last connect set button text to "CONNECT"
@@ -145,28 +156,29 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         setCurrentSsid();
         mWifiConnecter.connect(ssid, encryp, passwd, this);
 
-        if (pref_checkbox){
+        if (pref_checkbox) {
             btn_conn.setEnabled(false);
             btn_conn.setText("Testing...");
             timer.schedule(new TimerTask() {
                 int i = Integer.valueOf(pref_count).intValue();
+
                 @Override
                 public void run() {
-                    if(i > 0){
+                    if (i > 0) {
                         Message msg = new Message();
                         msg.what = i--;
                         handler.sendMessage(msg);
-                    } else if(i == -1){
+                    } else if (i == -1) {
                         Message msg = new Message();
                         msg.what = 2;
                         handler.sendMessage(msg);
                     }
                 }
-            }, Integer.valueOf(pref_frequency).intValue()*1500, Integer.valueOf(pref_frequency).intValue()*1000 );
+            }, Integer.valueOf(pref_frequency).intValue() * 1500, Integer.valueOf(pref_frequency).intValue() * 1000);
         }
     }
 
-    public void connectPeriod () {
+    public void connectPeriod() {
         mWifiConnecter.shutDownWifi();
         setCurrentSsid();
 //        mWifiConnecter.connect(ssid, encryp, passwd, this);
@@ -183,11 +195,11 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         pref_checkbox = prefs.getBoolean("example_checkbox", false);
-        pref_frequency = prefs.getString("example_list","null");
+        pref_frequency = prefs.getString("example_list", "null");
         pref_count = prefs.getString("example_list2", "null");
 
 //        share data
@@ -322,6 +334,46 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         iperfTask = new IperfTask();
         iperfTask.execute();
         return;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.peanutswifi/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.peanutswifi/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 
     class IperfTask extends AsyncTask<Void, String, String> {
