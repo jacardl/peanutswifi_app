@@ -20,12 +20,15 @@ package com.peanutswifi;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -74,6 +77,7 @@ public class SpeedTestLauncher extends Activity {
 		mBtnStart = (Button) findViewById(R.id.btnStart);
 		mTxtSpeed = (TextView) findViewById(R.id.downlink_speed);
 		mTxtSpeed2 = (TextView) findViewById(R.id.uplink_speed);
+		mTxtError = (TextView) findViewById(R.id.error_text);
 
 		mBtnStart.setOnClickListener(new OnClickListener(){
 			@Override
@@ -115,6 +119,11 @@ public class SpeedTestLauncher extends Activity {
 				case MSG_COMPLETE_STATUS:
 					final  SpeedInfo info2=(SpeedInfo) msg.obj;
 					downlinkSpeedFinishList.add(info2.kilobits);
+					final String errorUrl = msg.getData().getString("url");
+					final String errorMess = msg.getData().getString("error");
+					if (errorUrl != null) {
+						mTxtError.append(errorUrl + " " + errorMess + "\n");
+					}
 					if(downlinkSpeedFinishList.size() == DOWNLOAD_URLS.length) {
 						for (double speed: downlinkSpeedFinishList) {
 							downlinkSpeedFinish += speed;
@@ -147,6 +156,11 @@ public class SpeedTestLauncher extends Activity {
 
 				case MSG_COMPLETE_STATUS_UPLINK:
 					final  SpeedInfo info4=(SpeedInfo) msg.obj;
+					final String errorUrl2 = msg.getData().getString("url");
+					final String errorMess2 = msg.getData().getString("error");
+					if (errorUrl2 != null) {
+						mTxtError.append(errorUrl2 + " " + errorMess2 + "\n");
+					}
 					uplinkSpeedFinishList.add(info4.kilobits);
 					if(uplinkSpeedFinishList.size() == UPLOAD_URLS.length) {
 						for (double speed : uplinkSpeedFinishList) {
@@ -219,8 +233,20 @@ public class SpeedTestLauncher extends Activity {
 			} 
 			catch (MalformedURLException e) {
 				Log.e(TAG, e.getMessage());
+				Message msg=Message.obtain(mHandler, MSG_COMPLETE_STATUS, calculate(1, 1));
+				Bundle bundle = new Bundle();
+				bundle.putString("url", url);
+				bundle.putString("error", e.getMessage());
+				msg.setData(bundle);
+				mHandler.sendMessage(msg);
 			} catch (IOException e) {
 				Log.e(TAG, e.getMessage());
+				Message msg=Message.obtain(mHandler, MSG_COMPLETE_STATUS, calculate(1, 1));
+				Bundle bundle = new Bundle();
+				bundle.putString("url", url);
+				bundle.putString("error", e.getMessage());
+				msg.setData(bundle);
+				mHandler.sendMessage(msg);
 			}finally{
 				try {
 					if(stream!=null){
@@ -286,8 +312,20 @@ public class SpeedTestLauncher extends Activity {
 			}
 			catch (MalformedURLException e) {
 				Log.e(TAG, e.getMessage());
+				Message msg=Message.obtain(mHandler, MSG_COMPLETE_STATUS_UPLINK, calculate(1, 1));
+				Bundle bundle = new Bundle();
+				bundle.putString("url", url);
+				bundle.putString("error", e.getMessage());
+				msg.setData(bundle);
+				mHandler.sendMessage(msg);
 			} catch (IOException e) {
 				Log.e(TAG, e.getMessage());
+				Message msg=Message.obtain(mHandler, MSG_COMPLETE_STATUS_UPLINK, calculate(1, 1));
+				Bundle bundle = new Bundle();
+				bundle.putString("url", url);
+				bundle.putString("error", e.getMessage());
+				msg.setData(bundle);
+				mHandler.sendMessage(msg);
 			}finally{
 				try {
 					if(stream!=null){
@@ -371,15 +409,16 @@ public class SpeedTestLauncher extends Activity {
 			"http://www.so.com/",
 			"http://www.sohu.com/",
 			"http://www.kankan.com/",
-			"http://www.baidu.com/",
 			"http://www.tudou.com/",
 			"http://www.360doc.com/",
 			"http://www.speedtest.cn/",
+			"http://www.sogou.com/",
 	};
 
 	private Button mBtnStart;
 	private TextView mTxtSpeed;
 	private TextView mTxtSpeed2;
+	private TextView mTxtError;
 
 	private final int MSG_UPDATE_STATUS=1;
 	private final int MSG_COMPLETE_STATUS=2;
@@ -388,7 +427,6 @@ public class SpeedTestLauncher extends Activity {
 
 	private final static int UPDATE_THRESHOLD=300;
 	private final static int SPEED_TIME = 10000;
-	private final static int SPEED_TIME_OVER = 12000;
 
 	private DecimalFormat mDecimalFormater;
 	private String Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

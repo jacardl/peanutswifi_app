@@ -20,21 +20,21 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
+    android:weightSum="1">
 
 <TextView  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:id="@+id/downlink_speed"
     android:text="@string/downlink"
- android:layout_marginTop="10dip" android:textColor="@android:color/black" android:textSize="16sp"/>
+ android:layout_marginTop="10dip" android:textColor="@android:color/black" android:textSize="20sp"/>
  
  <TextView  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:id="@+id/uplink_speed"
     android:text="@string/uplink"
- android:layout_marginTop="10dip" android:textColor="@android:color/black" android:textSize="16sp"/>
+ android:layout_marginTop="10dip" android:textColor="@android:color/black" android:textSize="20sp"/>
 
 <Button
     android:layout_width="wrap_content"
@@ -42,4 +42,14 @@
     android:id="@+id/btnStart"
     android:text="@string/start_button"
     android:layout_marginTop="10dip"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/error_text"
+        android:layout_weight="0.83"
+        android:autoText="false"
+        android:textColor="@android:color/holo_red_light" />
+
 </LinearLayout>

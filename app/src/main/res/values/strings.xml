@@ -21,8 +21,8 @@
     <string name="update_speed_uplink">Uplink: %s kbit/s</string>
     <string name="downlink">Downlink: 0 kbit/s</string>
     <string name="uplink">Uplink: 0 kbit/s</string>
-    <string formatted="false" name="update_downloaded_complete">Downlink: %s kbit/s</string>
-    <string formatted="false" name="update_uploaded_complete">Uplink: %s kbit/s</string>
+    <string formatted="false" name="update_downloaded_complete">Downlink complete: %s kbit/s</string>
+    <string formatted="false" name="update_uploaded_complete">Uplink complete: %s kbit/s</string>
     <string name="start_button">START</string>
 
 </resources>
