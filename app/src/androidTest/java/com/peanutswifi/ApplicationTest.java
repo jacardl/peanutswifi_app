@@ -124,51 +124,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
-    public void test_assoc_psk2_sta_keyspec() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk2_sta_ssidspec() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk2_sta_ssidchinese() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
     public void test_repeat_assoc_psk2_sta() throws Exception {
         int count = 0;
         int actual = 0;
@@ -200,52 +155,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk_sta_keyspec() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk_sta_ssidspec() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-
-    public void test_assoc_psk_sta_ssidchinese() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID);
         solo.clearEditText(1);
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 1);
@@ -293,51 +202,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
-    public void test_assoc_tkippsk2_sta_keyspec() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_ssidspec() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_ssidchinese() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
     public void test_repeat_assoc_tkippsk2_sta() throws Exception {
         int count = 0;
         int actual = 0;
@@ -369,51 +233,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_keyspec() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_ssidspec() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_ssidchinese() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID);
         solo.clearEditText(1);
         solo.enterText(1, KEY);
         solo.pressSpinnerItem(0, 2);
