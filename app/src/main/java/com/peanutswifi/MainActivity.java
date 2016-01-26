@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -122,9 +121,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
                 MainActivity.this.startActivity(intentSpeedtest);
             }
         });
-
         setCurrentSsid();
-
     }
 
     private void setCurrentSsid() {

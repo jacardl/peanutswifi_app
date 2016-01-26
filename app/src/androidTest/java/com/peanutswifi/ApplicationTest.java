@@ -1,6 +1,7 @@
 package com.peanutswifi;
 
 import android.test.ActivityInstrumentationTestCase2;
+
 import com.robotium.solo.Solo;
 
 /**
@@ -10,7 +11,8 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     private Solo solo ;
     private final int TIMEOUT = 30 * 1000;
-    private final String SSID = "peanuts_automatic_test_suite";
+    private String SSID = "peanuts_automatic_test_suite";
+    private String KEY = "12345678";
     private final String SSID_5G = "peanuts_automatic_test_suite-5G";
     private final String CHINESE_SSID = "业界良心_花生自动化";
     private final String CHINESE_SSID_5G = "业界良心_花生自动化-5G";
@@ -18,7 +20,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     private final String SPECIAL_SSID = "`~!@#$%^&*() =+\\|]}[{'\";:/?.>,<";
     private final String SPECIAL_SSID_5G = "`~!@#$%^&*() =+\\|]}[{'\";:/?.-5G";
     private final String GUEST_SSID = "peanuts_guest";
-    private final String KEY = "12345678";
 //   original special_ssid : `~!@#$%^&*() =+\|]}[{'";:/?.>,<`~!@#$%^&*() =+\|]}[{'";:/?.>,<1
     private final String SPECIAL_KEY = "`~!@#$%^&*() =+\\|]}[{'\";:/?.>,<`~!@#$%^&*() =+\\|]}[{'\";:/?.>,<1";
     private final String CLEAR = "onClearConfig";
@@ -37,8 +38,13 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     protected void setUp() throws Exception {
         super.setUp();
-        solo = new Solo(this.getInstrumentation(),this.getActivity());
-
+        if (MyTestRunner.SSID != null) {
+            SSID = MyTestRunner.SSID;
+        }
+        if (MyTestRunner.KEY != null) {
+            KEY = MyTestRunner.KEY;
+        }
+        solo = new Solo(this.getInstrumentation(), this.getActivity());
     }
 
     protected void tearDown() throws Exception {
@@ -68,7 +74,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         }
     }
 
-    public void test_assoc_clear_sta_2g() throws Exception {
+    public void test_assoc_clear_sta() throws Exception {
         boolean expected =true;
         solo.clickOnButton(1);
         solo.waitForText(CLEAR);
@@ -81,7 +87,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
-    public void test_repeat_assoc_clear_sta_2g() throws Exception {
+    public void test_repeat_assoc_clear_sta() throws Exception {
         int count = 0;
         int actual = 0;
 
@@ -103,77 +109,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
     }
 
-    public void test_assoc_clear_sta_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,SSID_5G);
-        solo.pressSpinnerItem(0,0);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_clear_sta_5g() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, SSID_5G);
-            solo.pressSpinnerItem(0, 0);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_clear_sta_guest() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,GUEST_SSID);
-        solo.pressSpinnerItem(0,0);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_clear_sta_guest() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, GUEST_SSID);
-            solo.pressSpinnerItem(0, 0);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_psk2_sta_2g() throws Exception {
+    public void test_assoc_psk2_sta() throws Exception {
         boolean expected =true;
         solo.clickOnButton(1);
         solo.waitForText(CLEAR);
@@ -188,52 +124,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
-    public void test_assoc_psk2_sta_keyspec_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk2_sta_ssidspec_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk2_sta_ssidchinese_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_psk2_sta_2g() throws Exception {
+    public void test_repeat_assoc_psk2_sta() throws Exception {
         int count = 0;
         int actual = 0;
 
@@ -257,131 +148,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
     }
 
-    public void test_assoc_psk2_sta_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk2_sta_keyspec_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk2_sta_ssidspec_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-
-    public void test_assoc_psk2_sta_ssidchinese_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_psk2_sta_5g() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, SSID_5G);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 3);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_psk2_sta_guest() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,GUEST_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,3);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_psk2_sta_guest() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, GUEST_SSID);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 3);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_psk_sta_2g() throws Exception {
+    public void test_assoc_psk_sta() throws Exception {
         boolean expected =true;
         solo.clickOnButton(1);
         solo.waitForText(CLEAR);
@@ -396,53 +163,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
-    public void test_assoc_psk_sta_keyspec_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk_sta_ssidspec_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-
-    public void test_assoc_psk_sta_ssidchinese_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_psk_sta_2g() throws Exception {
+    public void test_repeat_assoc_psk_sta() throws Exception {
         int count = 0;
         int actual = 0;
 
@@ -466,131 +187,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
     }
 
-    public void test_assoc_psk_sta_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk_sta_keyspec_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk_sta_ssidspec_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_psk_sta_ssidchinese_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_psk_sta_5g() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0,SSID_5G);
-            solo.clearEditText(1);
-            solo.enterText(1,KEY);
-            solo.pressSpinnerItem(0,1);
-            solo.clickOnButton(0);
-            solo.waitForText(SUCCESS, 0, TIMEOUT);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_psk_sta_guest() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,GUEST_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,1);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_psk_sta_guest() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, GUEST_SSID);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 1);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_2g() throws Exception {
+    public void test_assoc_tkippsk2_sta() throws Exception {
         boolean expected =true;
         solo.clickOnButton(1);
         solo.waitForText(CLEAR);
@@ -605,52 +202,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
-    public void test_assoc_tkippsk2_sta_keyspec_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_ssidspec_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_ssidchinese_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_tkippsk2_sta_2g() throws Exception {
+    public void test_repeat_assoc_tkippsk2_sta() throws Exception {
         int count = 0;
         int actual = 0;
 
@@ -674,130 +226,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
     }
 
-    public void test_assoc_tkippsk2_sta_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_keyspec_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_ssidspec_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_ssidchinese_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_tkippsk2_sta_5g() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, SSID_5G);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 4);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_tkippsk2_sta_guest() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,GUEST_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,4);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_tkippsk2_sta_guest() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, GUEST_SSID);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 4);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_2g() throws Exception {
+    public void test_assoc_tkippsk_sta() throws Exception {
         boolean expected =true;
         solo.clickOnButton(1);
         solo.waitForText(CLEAR);
@@ -812,52 +241,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Connected to specified SSID is failed.", expected, actual);
     }
 
-    public void test_assoc_tkippsk_sta_keyspec_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_ssidspec_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_ssidchinese_2g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_tkippsk_sta_2g() throws Exception {
+    public void test_repeat_assoc_tkippsk_sta() throws Exception {
         int count = 0;
         int actual = 0;
 
@@ -881,149 +265,13 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
     }
 
-    public void test_assoc_tkippsk_sta_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_keyspec_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, SPECIAL_KEY);
-        solo.pressSpinnerItem(0, 2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_ssidspec_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, SPECIAL_SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1, KEY);
-        solo.pressSpinnerItem(0, 2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_ssidchinese_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0, CHINESE_SSID_5G);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_tkippsk_sta_5g() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, SSID_5G);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 2);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_assoc_tkippsk_sta_guest() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,GUEST_SSID);
-        solo.clearEditText(1);
-        solo.enterText(1,KEY);
-        solo.pressSpinnerItem(0,2);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT);
-        assertEquals("Connected to specified SSID is failed.", expected, actual);
-    }
-
-    public void test_repeat_assoc_tkippsk_sta_guest() throws Exception {
-        int count = 0;
-        int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
-            solo.clearEditText(0);
-            solo.enterText(0, GUEST_SSID);
-            solo.clearEditText(1);
-            solo.enterText(1,KEY);
-            solo.pressSpinnerItem(0,2);
-            solo.clickOnButton(0);
-            if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
-                actual++;
-            } else if(solo.waitForText("Connecting to ", 0, TIMEOUT)) {
-                solo.goBack();
-            }
-            count++;
-        }
-        assertEquals("Not all association were successful", REPEAT_ASSOC, actual);
-    }
-
-    public void test_ssidhide_2g() throws Exception {
+    public void test_ssidhide() throws Exception {
         boolean expected =true;
         solo.clickOnButton(1);
         solo.waitForText(CLEAR);
         solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0,SSID);
-        solo.pressSpinnerItem(0,0);
-        solo.clickOnButton(0);
-        boolean actual = solo.waitForText(NO_EXIST, 0, TIMEOUT);
-        assertEquals("Specified SSID should be hidden .", expected, actual);
-    }
-
-    public void test_ssidhide_5g() throws Exception {
-        boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
-        solo.clearEditText(0);
-        solo.enterText(0,SSID_5G);
         solo.pressSpinnerItem(0,0);
         solo.clickOnButton(0);
         boolean actual = solo.waitForText(NO_EXIST, 0, TIMEOUT);

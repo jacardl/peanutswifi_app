@@ -8,9 +8,9 @@
         <uses-library android:name="android.test.runner" />
     </application>
 
-    <instrumentation android:name="android.test.InstrumentationTestRunner"
+    <instrumentation android:name="com.peanutswifi.MyTestRunner"
                      android:targetPackage="com.peanutswifi"
-                     android:handleProfiling="false"
-                     android:functionalTest="false"
+                     android:handleProfiling="true"
+                     android:functionalTest="true"
                      android:label="Tests for com.peanutswifi"/>
 </manifest>
