@@ -2,10 +2,9 @@ package com.peanutswifi;
 
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 
-import java.util.List;
 
 /**
  * Created by Jac on 2015/4/8.
@@ -16,11 +15,11 @@ public class Wifi {
 
     public static boolean connectToNewNetwork(final WifiManager wifiMgr, final String ssid, final String encryp, final String passwd, final String bssid, boolean reassociate){
 
-        final List<WifiConfiguration> configurations = wifiMgr.getConfiguredNetworks();
-        for(final WifiConfiguration configTmp : configurations) {
-            wifiMgr.removeNetwork(configTmp.networkId);
-        }
-        wifiMgr.saveConfiguration();
+//        final List<WifiConfiguration> configurations = wifiMgr.getConfiguredNetworks();
+//        for(final WifiConfiguration configTmp : configurations) {
+//            wifiMgr.removeNetwork(configTmp.networkId);
+//        }
+//        wifiMgr.saveConfiguration();
 
         WifiConfiguration config = new WifiConfiguration();
         config.SSID = StringUtils.convertToQuotedString(ssid);
@@ -33,7 +32,7 @@ public class Wifi {
             return false;
         }
 
-        final List<WifiConfiguration> configurations2 = wifiMgr.getConfiguredNetworks();
+//        final List<WifiConfiguration> configurations2 = wifiMgr.getConfiguredNetworks();
 
         if(!wifiMgr.enableNetwork(id, true)){
             return false;

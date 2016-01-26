@@ -13,6 +13,7 @@ import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.net.wifi.WifiInfo;
 
 import java.util.List;
 
@@ -115,6 +116,31 @@ public class WifiConnecter{
             mWifiManager.setWifiEnabled(false);
         }
 
+    }
+
+    public void clearConnect3(ActionListener listener) {
+//   clear config and disconnect with ap
+        if (listener != null) {
+            this.mListener = listener;
+
+            final List<WifiConfiguration> configurations = mWifiManager.getConfiguredNetworks();
+            if (configurations != null) {
+                for (final WifiConfiguration configTmp : configurations) {
+                    mWifiManager.removeNetwork(configTmp.networkId);
+                }
+                mWifiManager.saveConfiguration();
+            }
+            listener.onClearConfig();
+
+            onResume();
+            WifiInfo info = mWifiManager.getConnectionInfo();
+            String curSsid = info.getSSID();
+            if (curSsid != "0x") {
+                mWifiManager.disconnect();
+            }
+            listener.onShutDownWifi();
+
+        }
     }
 
     public void shutDownWifi(){

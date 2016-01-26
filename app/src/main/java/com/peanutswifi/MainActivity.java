@@ -160,7 +160,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         passwd = et_passwd.getText().toString();
         encryp = sp_encryp.getSelectedItem().toString();
 
-        mWifiConnecter.clearConnect2();
+        mWifiConnecter.clearConnect3(this);
         setCurrentSsid();
         mWifiConnecter.connect(ssid, encryp, passwd, this);
 
@@ -195,7 +195,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
     }
 
     public void clearConnect(View view) {
-        mWifiConnecter.clearConnect(this);
+        mWifiConnecter.clearConnect3(this);
         setCurrentSsid();
         et_ssid.setText("");
         et_passwd.setText("");

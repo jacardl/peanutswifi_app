@@ -76,9 +76,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     public void test_assoc_clear_sta() throws Exception {
         boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0, SSID);
         solo.pressSpinnerItem(0, 0);
@@ -92,9 +89,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         int actual = 0;
 
         while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
             solo.clearEditText(0);
             solo.enterText(0, SSID);
             solo.pressSpinnerItem(0, 0);
@@ -111,9 +105,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     public void test_assoc_psk2_sta() throws Exception {
         boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0,SSID);
         solo.clearEditText(1);
@@ -129,9 +120,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         int actual = 0;
 
         while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
             solo.clearEditText(0);
             solo.enterText(0, SSID);
             solo.clearEditText(1);
@@ -150,9 +138,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     public void test_assoc_psk_sta() throws Exception {
         boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0, SSID);
         solo.clearEditText(1);
@@ -168,9 +153,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         int actual = 0;
 
         while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
             solo.clearEditText(0);
             solo.enterText(0, SSID);
             solo.clearEditText(1);
@@ -189,9 +171,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     public void test_assoc_tkippsk2_sta() throws Exception {
         boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0, SSID);
         solo.clearEditText(1);
@@ -207,9 +186,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         int actual = 0;
 
         while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
             solo.clearEditText(0);
             solo.enterText(0, SSID);
             solo.clearEditText(1);
@@ -228,9 +204,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     public void test_assoc_tkippsk_sta() throws Exception {
         boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0, SSID);
         solo.clearEditText(1);
@@ -246,9 +219,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         int actual = 0;
 
         while (count < REPEAT_ASSOC){
-            solo.clickOnButton(1);
-            solo.waitForText(CLEAR);
-            solo.waitForText(SHUTDOWN);
             solo.clearEditText(0);
             solo.enterText(0, SSID);
             solo.clearEditText(1);
@@ -267,9 +237,6 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     public void test_ssidhide() throws Exception {
         boolean expected =true;
-        solo.clickOnButton(1);
-        solo.waitForText(CLEAR);
-        solo.waitForText(SHUTDOWN);
         solo.clearEditText(0);
         solo.enterText(0,SSID);
         solo.pressSpinnerItem(0,0);
