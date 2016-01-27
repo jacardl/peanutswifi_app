@@ -9,7 +9,7 @@ android {
         minSdkVersion 18
         targetSdkVersion 21
         versionCode 1
-        versionName "1.0.5"
+        versionName "1.0.6"
         testApplicationId "com.peanutswifi.test"
         testInstrumentationRunner "com.peanutswifi.MyTestRunner"
         testHandleProfiling true
