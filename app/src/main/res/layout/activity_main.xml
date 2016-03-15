@@ -91,11 +91,19 @@
         android:textSize="20sp"
         android:layout_below="@+id/cur_speed" />
 
+    <TextView
+        android:text="@string/cur_freq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cur_freq"
+        android:textSize="20sp"
+        android:layout_below="@+id/cur_ip" />
+
     <ToggleButton android:id="@+id/toggleButton"
         android:layout_height="wrap_content" android:layout_width="wrap_content"
         android:text="@string/iperf" android:textOn="iperf" android:textOff="iperf"
         android:onClick="ToggleButtonClick"
-        android:layout_below="@+id/cur_ip" />
+        android:layout_below="@+id/cur_freq" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -103,7 +111,7 @@
         android:layout_height="wrap_content"
         android:text="@string/speedtest"
         android:id="@+id/speedtest"
-        android:layout_below="@+id/cur_ip"
+        android:layout_below="@+id/cur_freq"
         android:layout_toEndOf="@+id/toggleButton" />
 
     <LinearLayout

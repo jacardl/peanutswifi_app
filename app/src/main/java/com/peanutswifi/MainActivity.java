@@ -55,6 +55,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
     private TextView tv_cur_bssid;
     private TextView tv_cur_speed;
     private TextView tv_cur_ip;
+    private TextView tv_cur_freq;
     private TextView version;
 
     private static final String[] m = {"NONE", "WPA-AES-PSK", "WPA-TKIP-PSK", "WPA2-AES-PSK", "WPA2-TKIP-PSK"};
@@ -94,6 +95,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         tv_cur_bssid = (TextView) findViewById(R.id.cur_bssid);
         tv_cur_speed = (TextView) findViewById(R.id.cur_speed);
         tv_cur_ip = (TextView) findViewById(R.id.cur_ip);
+        tv_cur_freq = (TextView) findViewById(R.id.cur_freq);
 
         et_ssid = (EditText) findViewById(R.id.ssid);
         et_passwd = (EditText) findViewById(R.id.passwd);
@@ -131,11 +133,13 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         b = StringUtils.convertToQuotedString(b);
         int ls = (info == null) ? 0 : info.getLinkSpeed();
         String ip = (info == null) ? "null" : Formatter.formatIpAddress(info.getIpAddress());
+        int freq = (info == null) ? 0 : info.getFrequency();
 
         tv_cur_ssid.setText(String.format(getString(R.string.cur_ssid), s));
         tv_cur_bssid.setText(getString(R.string.cur_bssid) + b);
         tv_cur_speed.setText(getString(R.string.cur_speed) + ls);
         tv_cur_ip.setText(getString(R.string.cur_ip) + ip);
+        tv_cur_freq.setText(getString(R.string.cur_freq) + freq);
 
     }
 

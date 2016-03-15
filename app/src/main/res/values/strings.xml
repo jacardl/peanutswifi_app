@@ -12,6 +12,7 @@
     <string name="cur_bssid">Current BSSID: </string>
     <string name="cur_speed">Current Speed: </string>
     <string name="cur_ip">Current IP: </string>
+    <string name="cur_freq">Current Freq: </string>
     <string name="iperf">iperf</string>
     <string name="speedtest">speedtest</string>
     <string name="version">version</string>
