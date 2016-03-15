@@ -11,19 +11,8 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
 
     private Solo solo ;
     private final int TIMEOUT = 30 * 1000;
-    private String SSID = "peanuts_automatic_test_suite";
+    private String SSID = "peanuts";
     private String KEY = "12345678";
-    private final String SSID_5G = "peanuts_automatic_test_suite-5G";
-    private final String CHINESE_SSID = "业界良心_花生自动化";
-    private final String CHINESE_SSID_5G = "业界良心_花生自动化-5G";
-//    original special_ssid :   `~!@#$%^&*() =+\|]}[{'";:/?.>,<
-    private final String SPECIAL_SSID = "`~!@#$%^&*() =+\\|]}[{'\";:/?.>,<";
-    private final String SPECIAL_SSID_5G = "`~!@#$%^&*() =+\\|]}[{'\";:/?.-5G";
-    private final String GUEST_SSID = "peanuts_guest";
-//   original special_ssid : `~!@#$%^&*() =+\|]}[{'";:/?.>,<`~!@#$%^&*() =+\|]}[{'";:/?.>,<1
-    private final String SPECIAL_KEY = "`~!@#$%^&*() =+\\|]}[{'\";:/?.>,<`~!@#$%^&*() =+\\|]}[{'\";:/?.>,<1";
-    private final String CLEAR = "onClearConfig";
-    private final String SHUTDOWN = "onShutDownWifi";
     private final String SUCCESS = "onSuccess";
     private final String FINISH = "onFinished : true";
     private final String NO_EXIST = "Specified SSID isnot exist!";
@@ -87,11 +76,10 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     public void test_repeat_assoc_clear_sta() throws Exception {
         int count = 0;
         int actual = 0;
-
+        solo.clearEditText(0);
+        solo.enterText(0, SSID);
+        solo.pressSpinnerItem(0, 0);
         while (count < REPEAT_ASSOC){
-            solo.clearEditText(0);
-            solo.enterText(0, SSID);
-            solo.pressSpinnerItem(0, 0);
             solo.clickOnButton(0);
             if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
                 actual++;
@@ -118,13 +106,12 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     public void test_repeat_assoc_psk2_sta() throws Exception {
         int count = 0;
         int actual = 0;
-
-        while (count < REPEAT_ASSOC){
-            solo.clearEditText(0);
-            solo.enterText(0, SSID);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 3);
+        solo.clearEditText(0);
+        solo.enterText(0, SSID);
+        solo.clearEditText(1);
+        solo.enterText(1, KEY);
+        solo.pressSpinnerItem(0, 3);
+        while (count < REPEAT_ASSOC) {
             solo.clickOnButton(0);
             if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
                 actual++;
@@ -151,13 +138,12 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     public void test_repeat_assoc_psk_sta() throws Exception {
         int count = 0;
         int actual = 0;
-
+        solo.clearEditText(0);
+        solo.enterText(0, SSID);
+        solo.clearEditText(1);
+        solo.enterText(1, KEY);
+        solo.pressSpinnerItem(0, 1);
         while (count < REPEAT_ASSOC){
-            solo.clearEditText(0);
-            solo.enterText(0, SSID);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 1);
             solo.clickOnButton(0);
             if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
                 actual++;
@@ -184,13 +170,12 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     public void test_repeat_assoc_tkippsk2_sta() throws Exception {
         int count = 0;
         int actual = 0;
-
+        solo.clearEditText(0);
+        solo.enterText(0, SSID);
+        solo.clearEditText(1);
+        solo.enterText(1, KEY);
+        solo.pressSpinnerItem(0, 4);
         while (count < REPEAT_ASSOC){
-            solo.clearEditText(0);
-            solo.enterText(0, SSID);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 4);
             solo.clickOnButton(0);
             if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
                 actual++;
@@ -217,13 +202,12 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     public void test_repeat_assoc_tkippsk_sta() throws Exception {
         int count = 0;
         int actual = 0;
-
+        solo.clearEditText(0);
+        solo.enterText(0, SSID);
+        solo.clearEditText(1);
+        solo.enterText(1, KEY);
+        solo.pressSpinnerItem(0, 2);
         while (count < REPEAT_ASSOC){
-            solo.clearEditText(0);
-            solo.enterText(0, SSID);
-            solo.clearEditText(1);
-            solo.enterText(1, KEY);
-            solo.pressSpinnerItem(0, 2);
             solo.clickOnButton(0);
             if (solo.waitForText(SUCCESS, 0, TIMEOUT) && solo.waitForText(FINISH, 0, TIMEOUT)){
                 actual++;
