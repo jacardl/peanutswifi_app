@@ -1,6 +1,7 @@
 package com.peanutswifi;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.TextView;
 
 import com.robotium.solo.Solo;
 
@@ -61,6 +62,42 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
             solo.sleep(IPERF_TIME2 * 1000);
             assertEquals(true, true);
         }
+    }
+
+    public void test_2g_freq() throws Exception {
+        boolean expected =true;
+        TextView freqView = (TextView)solo.getView(R.id.cur_freq);
+        String freq = (String)freqView.getText();
+        String[] freqList = freq.split(":");
+        int freqInt = 0;
+        try
+        {
+            freqInt = Integer.parseInt(freqList[1]);
+        }
+        catch(NumberFormatException NFE)
+        {
+            System.out.println("格式错误");
+        }
+        boolean actual = (freqInt > 2000 && freqInt < 3000) ? true : false;
+        assertEquals("Current wifi is not 2g", expected, actual);
+    }
+
+    public void test_5g_freq() throws Exception {
+        boolean expected =true;
+        TextView freqView = (TextView)solo.getView(R.id.cur_freq);
+        String freq = (String)freqView.getText();
+        String[] freqList = freq.split(":");
+        int freqInt = 0;
+        try
+        {
+            freqInt = Integer.parseInt(freqList[1]);
+        }
+        catch(NumberFormatException NFE)
+        {
+            System.out.println("格式错误");
+        }
+        boolean actual = (freqInt > 5000 && freqInt < 6000) ? true : false;
+        assertEquals("Current wifi is not 5g", expected, actual);
     }
 
     public void test_assoc_clear_sta() throws Exception {
