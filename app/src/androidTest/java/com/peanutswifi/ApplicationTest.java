@@ -18,6 +18,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     private final String FINISH = "onFinished : true";
     private final String NO_EXIST = "Specified SSID isnot exist!";
     private final String IPERF = "iperf";
+    private final String UPLINK_COMPLETE = "Uplink complete:";
     private final int IPERF_TIME = 3600;
     private final int IPERF_TIME2 = 120;
     private final int REPEAT_ASSOC = 100;
@@ -98,6 +99,20 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         }
         boolean actual = (freqInt > 5000 && freqInt < 6000) ? true : false;
         assertEquals("Current wifi is not 5g", expected, actual);
+    }
+
+    public void test_speettest() throws Exception {
+        solo.clickOnButton("speedtest");
+        solo.clickOnButton("start");
+        TextView uplink = (TextView)solo.getView(R.id.uplink_speed);
+        TextView downlink = (TextView)solo.getView(R.id.downlink_speed);
+        if (solo.waitForText(UPLINK_COMPLETE, 0, TIMEOUT)) {
+            String[] downRateList = ((String) downlink.getText()).split(" ");
+            String[] upRateList = ((String) uplink.getText()).split(" ");
+            String downRate = downRateList[2];
+            String upRate = upRateList[2];
+            fail(String.format("downlink rate: %s KB/s, uplink rate: %s KB/s", downRate, upRate));
+        }
     }
 
     public void test_assoc_clear_sta() throws Exception {

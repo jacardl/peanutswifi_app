@@ -71,7 +71,7 @@ public class SpeedTestLauncher extends Activity {
 	 * Setup event handlers and bind variables to values from xml
 	 */
 	private void bindListeners() {
-		mBtnStart = (Button) findViewById(R.id.btnStart);
+		mBtnStart = (Button) findViewById(R.id.speedtest_start);
 		mTxtSpeed = (TextView) findViewById(R.id.downlink_speed);
 		mTxtSpeed2 = (TextView) findViewById(R.id.uplink_speed);
 		mTxtError = (TextView) findViewById(R.id.error_text);
