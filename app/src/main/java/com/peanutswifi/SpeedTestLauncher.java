@@ -20,15 +20,12 @@ package com.peanutswifi;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -105,7 +102,7 @@ public class SpeedTestLauncher extends Activity {
 			switch(msg.what){
 				case MSG_UPDATE_STATUS:
 					final SpeedInfo info1=(SpeedInfo) msg.obj;
-					downlinkSpeedUpdateList.add(info1.kilobits);
+					downlinkSpeedUpdateList.add(info1.kiloBytes);
 					if(downlinkSpeedUpdateList.size() == DOWNLOAD_URLS.length) {
 						for (double speed: downlinkSpeedUpdateList){
 							downlinkSpeedUpdata += speed;
@@ -118,7 +115,7 @@ public class SpeedTestLauncher extends Activity {
 
 				case MSG_COMPLETE_STATUS:
 					final  SpeedInfo info2=(SpeedInfo) msg.obj;
-					downlinkSpeedFinishList.add(info2.kilobits);
+					downlinkSpeedFinishList.add(info2.kiloBytes);
 					final String errorUrl = msg.getData().getString("url");
 					final String errorMess = msg.getData().getString("error");
 					if (errorUrl != null) {
@@ -143,7 +140,7 @@ public class SpeedTestLauncher extends Activity {
 
 				case MSG_UPDATE_STATUS_UPLINK:
 					final SpeedInfo info3=(SpeedInfo) msg.obj;
-					uplinkSpeedUpdateList.add(info3.kilobits);
+					uplinkSpeedUpdateList.add(info3.kiloBytes);
 					if(uplinkSpeedUpdateList.size() == UPLOAD_URLS.length) {
 						for (double speed: uplinkSpeedUpdateList){
 							uplinkSpeedUpdata += speed;
@@ -161,7 +158,7 @@ public class SpeedTestLauncher extends Activity {
 					if (errorUrl2 != null) {
 						mTxtError.append(errorUrl2 + " " + errorMess2 + "\n");
 					}
-					uplinkSpeedFinishList.add(info4.kilobits);
+					uplinkSpeedFinishList.add(info4.kiloBytes);
 					if(uplinkSpeedFinishList.size() == UPLOAD_URLS.length) {
 						for (double speed : uplinkSpeedFinishList) {
 							uplinkSpeedFinish += speed;
@@ -354,11 +351,13 @@ public class SpeedTestLauncher extends Activity {
 		SpeedInfo info=new SpeedInfo();
 		//from mil to sec
 		long bytespersecond   =(bytesIn / downloadTime) * 1000;
-		double kilobits=bytespersecond * BYTE_TO_KILOBIT;
-		double megabits=kilobits  * KILOBIT_TO_MEGABIT;
-		info.downspeed=bytespersecond;
-		info.kilobits=kilobits;
-		info.megabits=megabits;
+//		double kilobits=bytespersecond * BYTE_TO_KILOBIT;
+//		double megabits=kilobits  * KILOBIT_TO_MEGABIT;
+//		info.downspeed=bytespersecond;
+//		info.kilobits=kilobits;
+//		info.megabits=megabits;
+		double kiloBytes = bytespersecond * 0.0009765625;
+		info.kiloBytes = kiloBytes;
 
 		return info;
 	}
@@ -384,35 +383,34 @@ public class SpeedTestLauncher extends Activity {
 	private static class SpeedInfo{
 		public double kilobits=0;
 		public double megabits=0;
-		public double downspeed=0;		
+		public double downspeed=0;
+		public double kiloBytes=0;
 	}
 
 
 	//Private fields	
 	private static final String TAG = SpeedTestLauncher.class.getSimpleName();
 
-//	private static final double BYTE_TO_KILOBIT = 0.0078125;
-	private static final double BYTE_TO_KILOBIT = 0.008;
+	private static final double BYTE_TO_KILOBIT = 0.0078125;
+//	private static final double BYTE_TO_KILOBIT = 0.008;
 	private static final double KILOBIT_TO_MEGABIT = 0.0009765625;
 	private static final String[] DOWNLOAD_URLS = {
 			"http://dl.maxthon.cn/mx3/mx3.4.5.2000cn.exe",
-			"http://dl.ijinshan.com/safe/speedtest/00BCDF6C42AE276A395A6CF88667BCD3.dat",
-			"http://dl.games.sina.com.cn/utg/utgame_setup.exe",
-			"http://xiuxiu.dl.meitu.com/XiuXiu_Setup_3.6.1.exe",
-			"http://download.ie.sogou.com/se/sogou_explorer_4.0q.exe",
-			"http://dl.baofeng.com/baofeng5/Baofeng5-5.19.1129.exe",
-			"http://download.ie.sogou.com/se/sogou_explorer_4.0q.exe",
-			"http://ttplayer.qianqian.com/spec/download610/ttpsetup_610-44059078.exe",};
+            "http://dlsw.baidu.com/sw-search-sp/soft/3a/12350/QQ_8.1.17283.0_setup.1458109312.exe",
+//			"http://xiuxiu.dl.meitu.com/XiuXiu_Setup_3.6.1.exe",
+//			"http://download.ie.sogou.com/se/sogou_explorer_4.0q.exe",
+//			"http://dl.baofeng.com/baofeng5/Baofeng5-5.19.1129.exe",
+//			"http://download.ie.sogou.com/se/sogou_explorer_4.0q.exe",
+    };
 
 	private static final String[] UPLOAD_URLS = {
+            "http://netsp.master.qq.com/cgi-bin/netspeed/",
 			"http://www.taobao.com/",
-			"http://www.so.com/",
-			"http://www.sohu.com/",
-			"http://www.kankan.com/",
-			"http://www.tudou.com/",
-			"http://www.360doc.com/",
-			"http://www.speedtest.cn/",
-			"http://www.sogou.com/",
+//			"http://www.sohu.com/",
+//			"http://www.kankan.com/",
+//			"http://www.tudou.com/",
+//			"http://www.speedtest.cn/",
+//			"http://www.sogou.com/",
 	};
 
 	private Button mBtnStart;
@@ -426,7 +424,7 @@ public class SpeedTestLauncher extends Activity {
 	private final int MSG_COMPLETE_STATUS_UPLINK=4;
 
 	private final static int UPDATE_THRESHOLD=300;
-	private final static int SPEED_TIME = 10000;
+	private final static int SPEED_TIME = 5000;
 
 	private DecimalFormat mDecimalFormater;
 	private String Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
