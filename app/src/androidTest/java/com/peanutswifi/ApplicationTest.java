@@ -101,7 +101,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         assertEquals("Current wifi is not 5g", expected, actual);
     }
 
-    public void test_speettest() throws Exception {
+    public void test_speedtest() throws Exception {
         solo.clickOnButton("speedtest");
         solo.clickOnButton("start");
         TextView uplink = (TextView)solo.getView(R.id.uplink_speed);
