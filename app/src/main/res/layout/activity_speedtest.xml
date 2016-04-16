@@ -39,7 +39,7 @@
 <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/btnStart"
+    android:id="@+id/speedtest_start"
     android:text="@string/start_button"
     android:layout_marginTop="10dip"/>
 

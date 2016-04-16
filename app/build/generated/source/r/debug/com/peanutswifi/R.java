@@ -1330,7 +1330,6 @@ containing a value of this type.
         public static final int always=0x7f0e0016;
         public static final int beginning=0x7f0e0013;
         public static final int bottom=0x7f0e001e;
-        public static final int btnStart=0x7f0e0050;
         public static final int button=0x7f0e0044;
         public static final int button2=0x7f0e0045;
         public static final int checkbox=0x7f0e002b;
@@ -1381,6 +1380,7 @@ containing a value of this type.
         public static final int showHome=0x7f0e0010;
         public static final int showTitle=0x7f0e0011;
         public static final int speedtest=0x7f0e004c;
+        public static final int speedtest_start=0x7f0e0050;
         public static final int spinner_encryp=0x7f0e0042;
         public static final int split_action_bar=0x7f0e0007;
         public static final int ssid=0x7f0e0041;

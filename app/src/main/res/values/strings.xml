@@ -8,22 +8,22 @@
     <string name="passwd">password</string>
     <string name="connect">Connect</string>
     <string name="clear">Clear</string>
-    <string name="cur_ssid">Current SSID: %1$s</string>
-    <string name="cur_bssid">Current BSSID: </string>
-    <string name="cur_speed">Current Speed: </string>
-    <string name="cur_ip">Current IP: </string>
-    <string name="cur_freq">Current Freq: </string>
+    <string name="cur_ssid">SSID: %1$s</string>
+    <string name="cur_bssid">BSSID: </string>
+    <string name="cur_speed">Speed: </string>
+    <string name="cur_ip">IP: </string>
+    <string name="cur_freq">Freq: </string>
     <string name="iperf">iperf</string>
     <string name="speedtest">speedtest</string>
     <string name="version">version</string>
 
 
-    <string name="update_speed">Downlink: %s kbit/s</string>
-    <string name="update_speed_uplink">Uplink: %s kbit/s</string>
-    <string name="downlink">Downlink: 0 kbit/s</string>
-    <string name="uplink">Uplink: 0 kbit/s</string>
-    <string formatted="false" name="update_downloaded_complete">Downlink complete: %s kbit/s</string>
-    <string formatted="false" name="update_uploaded_complete">Uplink complete: %s kbit/s</string>
-    <string name="start_button">START</string>
+    <string name="update_speed">Downlink: %s KB/s</string>
+    <string name="update_speed_uplink">Uplink: %s KB/s</string>
+    <string name="downlink">Downlink: 0 KB/s</string>
+    <string name="uplink">Uplink: 0 KB/s</string>
+    <string formatted="false" name="update_downloaded_complete">Downlink complete: %s KB/s</string>
+    <string formatted="false" name="update_uploaded_complete">Uplink complete: %s KB/s</string>
+    <string name="start_button">start</string>
 
 </resources>
