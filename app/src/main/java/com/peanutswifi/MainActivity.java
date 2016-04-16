@@ -206,6 +206,11 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         sp_encryp.setSelection(0);
     }
 
+    public void scan(View view) {
+        ssid = et_ssid.getText().toString();
+        mWifiConnecter.scanSpecifiedSSID(ssid, this);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -227,6 +232,19 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         Toast.makeText(MainActivity.this, "onStarted", Toast.LENGTH_SHORT).show();
         mDialog.setMessage("Connecting to " + ssid + " ...");
         mDialog.show();
+    }
+
+    @Override
+    public void onScan(String ssid) {
+        Log.v("jacard", "------onScan------");
+        Toast.makeText(MainActivity.this, "onScan", Toast.LENGTH_SHORT).show();
+        mDialog.setMessage("Scaning " + ssid + " ...");
+        mDialog.show();
+    }
+
+    public void onScanSuccess(String ssid) {
+        Log.v("jacard", "------onScanSuccess------");
+        Toast.makeText(MainActivity.this, "onScanSuccess : " + ssid, Toast.LENGTH_SHORT).show();
     }
 
     @Override

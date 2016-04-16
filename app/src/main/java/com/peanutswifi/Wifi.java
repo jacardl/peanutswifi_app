@@ -13,7 +13,7 @@ public class Wifi {
 
     private static final String TAG = Wifi.class.getSimpleName();
 
-    public static boolean connectToNewNetwork(final WifiManager wifiMgr, final String ssid, final String encryp, final String passwd, final String bssid, boolean reassociate){
+    public static boolean connectToNewNetwork(final WifiManager wifiMgr, final String ssid, final String encryp, final String passwd, boolean reassociate){
 
 //        final List<WifiConfiguration> configurations = wifiMgr.getConfiguredNetworks();
 //        for(final WifiConfiguration configTmp : configurations) {
@@ -23,7 +23,7 @@ public class Wifi {
 
         WifiConfiguration config = new WifiConfiguration();
         config.SSID = StringUtils.convertToQuotedString(ssid);
-        config.BSSID = bssid;
+//        config.BSSID = bssid;
         setupSecurity(config, encryp, passwd);
 
         int id = wifiMgr.addNetwork(config);

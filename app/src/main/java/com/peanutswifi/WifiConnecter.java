@@ -75,6 +75,25 @@ public class WifiConnecter{
             listener.onStarted(ssid);
         }
 
+        if (!mWifiManager.isWifiEnabled()){
+            mWifiManager.setWifiEnabled(true);
+        }
+
+        if(!Wifi.connectToNewNetwork(mWifiManager, mSsid, mEncryp, mPasswd,true)){
+            if(mListener != null){
+                mListener.onFailure("Connect to AP is failed!");
+                mListener.onFinished(false);
+            }
+            onPause();
+        }
+    }
+
+    public void scanSpecifiedSSID(String ssid, ActionListener listener){
+        this.mListener = listener;
+        this.mSsid = ssid;
+        if(listener != null) {
+            listener.onScan(ssid);
+        }
         mScanner.forceScan();
     }
 
@@ -169,23 +188,19 @@ public class WifiConnecter{
             boolean flag = false;
             List<ScanResult> results = mWifiManager.getScanResults();
             for (ScanResult result: results){
-                boolean ssidEquals = mSsid.equals(result.SSID);
+                boolean ssidEquals = this.mSsid.equals(result.SSID);
                 if (ssidEquals){
                     flag = true;
-                    String mBssid = result.BSSID;
                     mScanner.pause();
-                    if(!Wifi.connectToNewNetwork(mWifiManager, mSsid, mEncryp, mPasswd, mBssid,true)){
-                        if(mListener != null){
-                            mListener.onFailure("Connect to AP failed!");
-                            mListener.onFinished(false);
-                        }
-                        onPause();
-                    }
                     break;
                 }
             }
             if(mListener != null && flag == false) {
-                mListener.onFailure("Cannot find specified SSID, Scan later!");
+                mListener.onFailure("Cannot find specified SSID!");
+            }
+            if (mListener != null && flag == true) {
+                mListener.onScanSuccess(this.mSsid);
+                mListener.onFinished(true);
             }
 
         }else if(WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
@@ -269,7 +284,7 @@ public class WifiConnecter{
                 mRetry = 0;
                 isActiveScan = false;
                 if(mListener != null){
-                    mListener.onFailure("Specified SSID isnot exist!");
+                    mListener.onFailure("Cannot find specified SSID, scan countdown is over!");
                     mListener.onFinished(false);
                 }
                 onPause();
@@ -291,8 +306,18 @@ public class WifiConnecter{
         /**
          * The operation succeeded
          *
-         * @param info
+         * @param ssid
          */
+
+        public void onScan(String ssid);
+        /**
+         * The operation succeeded
+         *
+         * @param
+         */
+
+        public void onScanSuccess(String ssid);
+
         public void onSuccess(WifiInfo info);
 
         /**
