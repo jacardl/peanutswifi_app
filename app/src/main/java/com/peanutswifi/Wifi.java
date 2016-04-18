@@ -23,6 +23,8 @@ public class Wifi {
 
         WifiConfiguration config = new WifiConfiguration();
         config.SSID = StringUtils.convertToQuotedString(ssid);
+        // This is a network that does not broadcast its SSID, so an SSID-specific probe request must be used for scans
+        config.hiddenSSID = true;
 //        config.BSSID = bssid;
         setupSecurity(config, encryp, passwd);
 
