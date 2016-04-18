@@ -98,6 +98,7 @@ public class WifiConnecter{
     }
 
     public void clearConnect(ActionListener listener){
+        //   clear config and shutdown wifi
         if (listener != null){
             this.mListener = listener;
 
@@ -131,10 +132,11 @@ public class WifiConnecter{
             mWifiManager.saveConfiguration();
         }
 
-        if (mWifiManager.isWifiEnabled()){
+        WifiInfo info = mWifiManager.getConnectionInfo();
+        String curSsid = info.getSSID();
+        if (curSsid != "0x") {
             mWifiManager.setWifiEnabled(false);
         }
-
     }
 
     public void clearConnect3(ActionListener listener) {

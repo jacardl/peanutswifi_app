@@ -208,6 +208,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
 
     public void scan(View view) {
         ssid = et_ssid.getText().toString();
+        mWifiConnecter.clearConnect2();
         mWifiConnecter.scanSpecifiedSSID(ssid, this);
     }
 
