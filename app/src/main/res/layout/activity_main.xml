@@ -59,13 +59,23 @@
         android:onClick="clearConnect"
         android:layout_below="@+id/button" />
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="@string/scan"
+        android:onClick="scan"
+        android:layout_below="@+id/button2" />
+
     <TextView
         android:text="@string/cur_ssid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cur_ssid"
         android:textSize="20sp"
-        android:layout_below="@+id/button2" />
+        android:layout_below="@+id/button3" />
 
     <TextView
         android:text="@string/cur_bssid"

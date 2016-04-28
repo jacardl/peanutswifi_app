@@ -8,6 +8,7 @@
     <string name="passwd">password</string>
     <string name="connect">Connect</string>
     <string name="clear">Clear</string>
+    <string name="scan">scan</string>
     <string name="cur_ssid">SSID: %1$s</string>
     <string name="cur_bssid">BSSID: </string>
     <string name="cur_speed">Speed: </string>

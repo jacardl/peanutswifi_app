@@ -16,7 +16,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     private String KEY = "12345678";
     private final String SUCCESS = "onSuccess";
     private final String FINISH = "onFinished : true";
-    private final String NO_EXIST = "Specified SSID isnot exist!";
+    private final String NO_EXIST = "Cannot find specified SSID, scan countdown is over!";
     private final String IPERF = "iperf";
     private final String UPLINK_COMPLETE = "Uplink complete:";
     private final int IPERF_TIME = 3600;
@@ -276,7 +276,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.clearEditText(0);
         solo.enterText(0,SSID);
         solo.pressSpinnerItem(0,0);
-        solo.clickOnButton(0);
+        solo.clickOnButton(2);
         boolean actual = solo.waitForText(NO_EXIST, 0, TIMEOUT);
         assertEquals("Specified SSID should be hidden .", expected, actual);
     }
