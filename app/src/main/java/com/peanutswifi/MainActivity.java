@@ -50,6 +50,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
     private Spinner sp_encryp;
     private Button btn_conn;
     private Button speedtest;
+    private Button btn_browser;
 
     private TextView tv_cur_ssid;
     private TextView tv_cur_bssid;
@@ -110,17 +111,24 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
         sp_encryp.setSelection(0);
         sp_encryp.setVisibility(View.VISIBLE);
 
-        speedtest = (Button) findViewById(R.id.speedtest);
-
         version = (TextView) findViewById(R.id.version);
-
         version.setText("v" + getVersionName());
 
+        speedtest = (Button) findViewById(R.id.speedtest);
         speedtest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentSpeedtest = new Intent(MainActivity.this, SpeedTestLauncher.class);
                 MainActivity.this.startActivity(intentSpeedtest);
+            }
+        });
+
+        btn_browser = (Button) findViewById(R.id.browserBtn);
+        btn_browser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentBrowser = new Intent(MainActivity.this, BrowserWebsiteLauncher.class);
+                MainActivity.this.startActivity(intentBrowser);
             }
         });
         setCurrentSsid();
