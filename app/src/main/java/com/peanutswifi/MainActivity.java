@@ -123,7 +123,7 @@ public class MainActivity extends ActionBarActivity implements ActionListener {
             }
         });
 
-        btn_browser = (Button) findViewById(R.id.browserBtn);
+        btn_browser = (Button) findViewById(R.id.browserBtnMain);
         btn_browser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

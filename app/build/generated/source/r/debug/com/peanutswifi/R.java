@@ -1331,6 +1331,7 @@ containing a value of this type.
         public static final int beginning=0x7f0e0013;
         public static final int bottom=0x7f0e001e;
         public static final int browserBtn=0x7f0e0056;
+        public static final int browserBtnMain=0x7f0e0049;
         public static final int button=0x7f0e0044;
         public static final int button2=0x7f0e0045;
         public static final int button3=0x7f0e0046;
@@ -1398,7 +1399,6 @@ containing a value of this type.
         public static final int urlEdit=0x7f0e0055;
         public static final int useLogo=0x7f0e0012;
         public static final int version=0x7f0e0050;
-        public static final int website=0x7f0e0049;
         public static final int withText=0x7f0e001a;
         public static final int wrap_content=0x7f0e001d;
     }

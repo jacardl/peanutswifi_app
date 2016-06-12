@@ -17,7 +17,7 @@
     <string name="iperf">iperf</string>
     <string name="speedtest">speedtest</string>
     <string name="version">version</string>
-    <string name="website">website</string>
+    <string name="website">browser</string>
 
 
     <string name="update_speed">Downlink: %s KB/s</string>
