@@ -39,35 +39,61 @@
         android:clickable="false" />
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:id="@+id/button"
         android:textSize="15dp"
         android:textStyle="bold"
-        android:singleLine="true"
         android:onClick="connect"
         android:text="@string/connect"
         android:layout_below="@+id/passwd" />
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
         android:textSize="15dp"
         android:textStyle="bold"
         android:text="@string/clear"
         android:onClick="clearConnect"
-        android:layout_below="@+id/button" />
+        android:layout_alignTop="@+id/button"
+        android:layout_toEndOf="@+id/button" />
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:id="@+id/button3"
         android:textSize="15dp"
         android:textStyle="bold"
         android:text="@string/scan"
         android:onClick="scan"
-        android:layout_below="@+id/button2" />
+        android:layout_below="@+id/passwd"
+        android:layout_toEndOf="@+id/button2" />
+
+    <ToggleButton android:id="@+id/toggleButton"
+        android:layout_height="wrap_content" android:layout_width="fill_parent"
+        android:text="@string/iperf" android:textOn="iperf" android:textOff="iperf"
+        android:onClick="ToggleButtonClick"
+        android:layout_below="@+id/passwd"
+        android:layout_toEndOf="@+id/button3"
+        android:layout_alignBottom="@+id/button3" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speedtest"
+        android:id="@+id/speedtest"
+        android:layout_below="@+id/button" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/website"
+        android:id="@+id/website"
+        android:layout_below="@+id/button"
+        android:layout_toEndOf="@+id/speedtest" />
 
     <TextView
         android:text="@string/cur_ssid"
@@ -75,7 +101,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/cur_ssid"
         android:textSize="15sp"
-        android:layout_below="@+id/button3" />
+        android:layout_below="@+id/speedtest" />
 
     <TextView
         android:text="@string/cur_bssid"
@@ -109,28 +135,14 @@
         android:textSize="15sp"
         android:layout_below="@+id/cur_ip" />
 
-    <ToggleButton android:id="@+id/toggleButton"
-        android:layout_height="wrap_content" android:layout_width="wrap_content"
-        android:text="@string/iperf" android:textOn="iperf" android:textOff="iperf"
-        android:onClick="ToggleButtonClick"
-        android:layout_below="@+id/cur_freq" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/speedtest"
-        android:id="@+id/speedtest"
-        android:layout_below="@+id/cur_freq"
-        android:layout_toEndOf="@+id/toggleButton" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toggleButton"
+        android:layout_below="@+id/cur_freq"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp">
+        android:layout_marginTop="54dp"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"

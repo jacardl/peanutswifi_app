@@ -17,6 +17,7 @@
     <string name="iperf">iperf</string>
     <string name="speedtest">speedtest</string>
     <string name="version">version</string>
+    <string name="website">website</string>
 
 
     <string name="update_speed">Downlink: %s KB/s</string>
@@ -26,5 +27,9 @@
     <string formatted="false" name="update_downloaded_complete">Downlink complete: %s KB/s</string>
     <string formatted="false" name="update_uploaded_complete">Uplink complete: %s KB/s</string>
     <string name="start_button">start</string>
+
+
+    <string name="url">URL:</string>
+    <string name="browser">browser</string>
 
 </resources>
