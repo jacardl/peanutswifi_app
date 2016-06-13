@@ -47,7 +47,7 @@ public class BrowserWebsiteLauncher extends Activity {
      * Setup event handlers and bind variables to values from xml
      */
     private void bindListeners() {
-        mBrowserButton = (Button) findViewById(R.id.browserBtn);
+        mBrowserButton = (Button) findViewById(R.id.start_browser_id);
         mURLEdit = (EditText) findViewById(R.id.urlEdit);
         mHeaderText = (TextView) findViewById(R.id.headerText);
         mContentsText = (TextView) findViewById(R.id.contentsText);

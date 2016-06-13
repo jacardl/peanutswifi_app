@@ -17,7 +17,7 @@ public class MyTestRunner extends InstrumentationTestRunner {
 
     public static String SSID;
     public static String KEY;
-    public static String URL_STRING;
+    public static String URL;
     String TAG = "===MyTestRunner===";
 
     public void onCreate(Bundle arguments) {
@@ -25,6 +25,7 @@ public class MyTestRunner extends InstrumentationTestRunner {
         if (null != arguments) {
             final String SSID_URL = (String) arguments.get("ssid");
             final String KEY_URL = (String) arguments.get("key");
+            final String URL_URL = (String) arguments.get("url");
             if (SSID_URL != null) {
                 SSID = decodeString(SSID_URL);
             } else {
@@ -35,7 +36,12 @@ public class MyTestRunner extends InstrumentationTestRunner {
             } else {
                 KEY = null;
             }
-            URL_STRING = (String) arguments.get("url");
+            if (URL_URL != null) {
+                URL = decodeString(URL_URL);
+            } else {
+                URL = null;
+            }
+
         }
         super.onCreate(arguments);
     }

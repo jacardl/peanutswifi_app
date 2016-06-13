@@ -14,12 +14,13 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     private final int TIMEOUT = 30 * 1000;
     private String SSID = "peanuts";
     private String KEY = "12345678";
-    private String URL_STRING = "http://miwifi.com";
+    private String URL = "http://miwifi.com/cgi-bin/luci/web";
     private final String SUCCESS = "onSuccess";
     private final String FINISH = "onFinished : true";
     private final String NO_EXIST = "Cannot find specified SSID, scan countdown is over!";
     private final String IPERF = "iperf";
     private final String UPLINK_COMPLETE = "Uplink complete:";
+    private final String HTTP_OK = "200 OK";
     private final int IPERF_TIME = 3600;
     private final int IPERF_TIME2 = 120;
     private final int REPEAT_ASSOC = 100;
@@ -35,6 +36,9 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         }
         if (MyTestRunner.KEY != null) {
             KEY = MyTestRunner.KEY;
+        }
+        if (MyTestRunner.URL != null) {
+            URL = MyTestRunner.URL;
         }
         solo = new Solo(this.getInstrumentation(), this.getActivity());
     }
@@ -117,18 +121,15 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     }
 
 
-    public void test_browser() throws Exception {
+    public void test_browser_website() throws Exception {
         solo.clickOnButton("browser");
-        solo.enterText(0, URL_STRING);
+        solo.enterText(0, URL);
         solo.clickOnButton("start");
         TextView header = (TextView)solo.getView(R.id.headerText);
-        TextView contents = (TextView)solo.getView(R.id.contentsText);
-        if (solo.waitForText(UPLINK_COMPLETE, 0, TIMEOUT)) {
-            String[] downRateList = ((String) downlink.getText()).split(" ");
-            String[] upRateList = ((String) uplink.getText()).split(" ");
-            String downRate = downRateList[2];
-            String upRate = upRateList[2];
-            fail(String.format("downlink rate: %s KB/s, uplink rate: %s KB/s", downRate, upRate));
+//        TextView contents = (TextView)solo.getView(R.id.contentsText);
+        if (solo.waitForText(HTTP_OK, 0, TIMEOUT)) {
+        } else {
+            fail(String.format(header.getText().toString()));
         }
     }
 
