@@ -23,11 +23,27 @@
         android:text="@string/browser" />
 
     <TextView
-        android:id="@+id/resultText"
+        android:id="@+id/headerText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#0000FF"
-        android:textSize="10sp">
-
+        android:textSize="10sp"
+        android:layout_below="@+id/browserBtn">
     </TextView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_gravity="right">
+        <TextView
+            android:id="@+id/contentsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#0000FF"
+            android:textSize="10sp"
+            android:layout_below="@+id/headerText">
+        </TextView>
+    </ScrollView>
+
 </LinearLayout>
