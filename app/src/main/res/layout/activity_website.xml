@@ -19,8 +19,8 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/browserBtn"
-        android:text="@string/browser" />
+        android:id="@+id/browser_start"
+        android:text="@string/start_browser" />
 
     <TextView
         android:id="@+id/headerText"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textColor="#0000FF"
         android:textSize="10sp"
-        android:layout_below="@+id/browserBtn">
+        android:layout_below="@+id/start_browser">
     </TextView>
 
     <ScrollView

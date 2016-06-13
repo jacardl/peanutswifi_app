@@ -17,6 +17,7 @@ public class MyTestRunner extends InstrumentationTestRunner {
 
     public static String SSID;
     public static String KEY;
+    public static String URL_STRING;
     String TAG = "===MyTestRunner===";
 
     public void onCreate(Bundle arguments) {
@@ -34,6 +35,7 @@ public class MyTestRunner extends InstrumentationTestRunner {
             } else {
                 KEY = null;
             }
+            URL_STRING = (String) arguments.get("url");
         }
         super.onCreate(arguments);
     }

@@ -14,6 +14,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     private final int TIMEOUT = 30 * 1000;
     private String SSID = "peanuts";
     private String KEY = "12345678";
+    private String URL_STRING = "http://miwifi.com";
     private final String SUCCESS = "onSuccess";
     private final String FINISH = "onFinished : true";
     private final String NO_EXIST = "Cannot find specified SSID, scan countdown is over!";
@@ -106,6 +107,22 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.clickOnButton("start");
         TextView uplink = (TextView)solo.getView(R.id.uplink_speed);
         TextView downlink = (TextView)solo.getView(R.id.downlink_speed);
+        if (solo.waitForText(UPLINK_COMPLETE, 0, TIMEOUT)) {
+            String[] downRateList = ((String) downlink.getText()).split(" ");
+            String[] upRateList = ((String) uplink.getText()).split(" ");
+            String downRate = downRateList[2];
+            String upRate = upRateList[2];
+            fail(String.format("downlink rate: %s KB/s, uplink rate: %s KB/s", downRate, upRate));
+        }
+    }
+
+
+    public void test_browser() throws Exception {
+        solo.clickOnButton("browser");
+        solo.enterText(0, URL_STRING);
+        solo.clickOnButton("start");
+        TextView header = (TextView)solo.getView(R.id.headerText);
+        TextView contents = (TextView)solo.getView(R.id.contentsText);
         if (solo.waitForText(UPLINK_COMPLETE, 0, TIMEOUT)) {
             String[] downRateList = ((String) downlink.getText()).split(" ");
             String[] upRateList = ((String) uplink.getText()).split(" ");
