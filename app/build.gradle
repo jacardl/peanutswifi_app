@@ -16,8 +16,19 @@ android {
         testFunctionalTest true
 
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("../jacard-keystore/jacard-keystore.jks")
+            storePassword "12345678"
+            keyAlias "jacard"
+            keyPassword "12345678"
+        }
+    }
+
     buildTypes {
-        release {
+        debug {
+            signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
