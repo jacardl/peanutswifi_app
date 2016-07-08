@@ -1,3 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\jac-pc2\.gradle\caches\modules-2\files-2.1\com.jayway.android.robotium\robotium-solo\5.5.3\d406c703b46065ecc4028890903c1596f38ad5dc\robotium-solo-5.5.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d406c703b46065ecc4028890903c1596f38ad5dc">
+        <dex dex="D:\peanutswifi_app\app\build\intermediates\pre-dexed\debug\robotium-solo-5.5.3_563d29b42bac3d7b167717d0f1ec3b37b1a2c23f.jar" />
+    </item>
+    <item
+        jar="D:\peanutswifi_app\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="95fd37732ec852e99f07eeb516a3650172f1d136">
+        <dex dex="D:\peanutswifi_app\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-21.0.0_429d5f0c93da4a763ecaf3ca097525ddad538283.jar" />
+    </item>
+    <item
+        jar="D:\peanutswifi_app\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\jars\libs\internal_impl-21.0.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="D:\peanutswifi_app\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.0_d1d500aaa75f02a7c402fc601c60b746a3a05bb1.jar" />
+    </item>
+    <item
+        jar="D:\peanutswifi_app\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="D:\peanutswifi_app\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-21.0.0_88a888290af8a73821bdb59341c5e628a4db6271.jar" />
+    </item>
+    <item
+        jar="C:\Users\jac-pc2\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.0\support-annotations-21.0.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
+        <dex dex="D:\peanutswifi_app\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.0_e338b30c3c5f3110393def70cbcffd4a02dad4b7.jar" />
+    </item>
+
+</items>

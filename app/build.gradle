@@ -2,22 +2,33 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '24.0.0'
 
     defaultConfig {
         applicationId "com.peanutswifi"
         minSdkVersion 21
         targetSdkVersion 21
         versionCode 1
-        versionName "1.1.2"
+        versionName "1.2.1"
         testApplicationId "com.peanutswifi.test"
         testInstrumentationRunner "com.peanutswifi.MyTestRunner"
         testHandleProfiling true
         testFunctionalTest true
 
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("../jacard-keystore/jacard-keystore.jks")
+            storePassword "12345678"
+            keyAlias "jacard"
+            keyPassword "12345678"
+        }
+    }
+
     buildTypes {
-        release {
+        debug {
+            signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

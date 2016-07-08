@@ -14,11 +14,15 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     private final int TIMEOUT = 30 * 1000;
     private String SSID = "peanuts";
     private String KEY = "12345678";
+    private String URL = "http://miwifi.com/cgi-bin/luci/web";
+//    private String URL = "http://m.taobao.com";
     private final String SUCCESS = "onSuccess";
     private final String FINISH = "onFinished : true";
     private final String NO_EXIST = "Cannot find specified SSID, scan countdown is over!";
     private final String IPERF = "iperf";
     private final String UPLINK_COMPLETE = "Uplink complete:";
+    private final String HTTP_200 = "200 OK";
+    private final String HTTP_302 = "302 Found";
     private final int IPERF_TIME = 3600;
     private final int IPERF_TIME2 = 120;
     private final int REPEAT_ASSOC = 100;
@@ -34,6 +38,9 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         }
         if (MyTestRunner.KEY != null) {
             KEY = MyTestRunner.KEY;
+        }
+        if (MyTestRunner.URL != null) {
+            URL = MyTestRunner.URL;
         }
         solo = new Solo(this.getInstrumentation(), this.getActivity());
     }
@@ -112,6 +119,19 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
             String downRate = downRateList[2];
             String upRate = upRateList[2];
             fail(String.format("downlink rate: %s KB/s, uplink rate: %s KB/s", downRate, upRate));
+        }
+    }
+
+
+    public void test_browser_website() throws Exception {
+        solo.clickOnButton("browser");
+        solo.enterText(0, URL);
+        solo.clickOnButton("start");
+        TextView header = (TextView)solo.getView(R.id.headerText);
+//        TextView contents = (TextView)solo.getView(R.id.contentsText);
+        if (solo.waitForText(HTTP_200, 0, TIMEOUT) || solo.waitForText(HTTP_302, 0, TIMEOUT)) {
+        } else {
+            fail(String.format(header.getText().toString()));
         }
     }
 

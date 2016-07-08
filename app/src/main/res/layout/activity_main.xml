@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ssid"
         android:inputType="none"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         android:singleLine="true"
         android:editable="true"
@@ -21,6 +21,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_encryp"
+        android:textSize="12sp"
         android:layout_below="@+id/ssid"
         android:spinnerMode="dialog"
         android:visibility="visible" />
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/passwd"
         android:layout_below="@+id/spinner_encryp"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         android:password="true"
         android:singleLine="true"
@@ -39,50 +40,74 @@
         android:clickable="false" />
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:singleLine="true"
+        android:textSize="12sp"
         android:onClick="connect"
         android:text="@string/connect"
         android:layout_below="@+id/passwd" />
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
-        android:textSize="15dp"
-        android:textStyle="bold"
+        android:textSize="12sp"
         android:text="@string/clear"
         android:onClick="clearConnect"
+        android:layout_alignTop="@+id/button"
+        android:layout_toEndOf="@+id/button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:textSize="12sp"
+        android:text="@string/scan"
+        android:onClick="scan"
+        android:layout_below="@+id/passwd"
+        android:layout_toEndOf="@+id/button2" />
+
+    <ToggleButton android:id="@+id/toggleButton"
+        android:layout_height="wrap_content" android:layout_width="wrap_content"
+        android:text="@string/iperf" android:textOn="iperf" android:textOff="iperf"
+        android:textSize="12sp"
+        android:onClick="ToggleButtonClick"
+        android:layout_below="@+id/passwd"
+        android:layout_toEndOf="@+id/button3"
+        android:layout_alignBottom="@+id/button3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speedtest"
+        android:textSize="12sp"
+        android:id="@+id/speedtest"
         android:layout_below="@+id/button" />
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:text="@string/scan"
-        android:onClick="scan"
-        android:layout_below="@+id/button2" />
+        android:text="@string/website"
+        android:textSize="12sp"
+        android:id="@+id/browserBtnMain"
+        android:layout_below="@+id/button"
+        android:layout_toEndOf="@+id/speedtest" />
 
     <TextView
         android:text="@string/cur_ssid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cur_ssid"
-        android:textSize="15sp"
-        android:layout_below="@+id/button3" />
+        android:textSize="12sp"
+        android:layout_below="@+id/speedtest" />
 
     <TextView
         android:text="@string/cur_bssid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cur_bssid"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_below="@+id/cur_ssid" />
 
     <TextView
@@ -90,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cur_speed"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_below="@+id/cur_bssid" />
 
     <TextView
@@ -98,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cur_ip"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_below="@+id/cur_speed" />
 
     <TextView
@@ -106,31 +131,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cur_freq"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_below="@+id/cur_ip" />
-
-    <ToggleButton android:id="@+id/toggleButton"
-        android:layout_height="wrap_content" android:layout_width="wrap_content"
-        android:text="@string/iperf" android:textOn="iperf" android:textOff="iperf"
-        android:onClick="ToggleButtonClick"
-        android:layout_below="@+id/cur_freq" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/speedtest"
-        android:id="@+id/speedtest"
-        android:layout_below="@+id/cur_freq"
-        android:layout_toEndOf="@+id/toggleButton" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toggleButton"
+        android:layout_below="@+id/cur_freq"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp">
+        android:layout_marginTop="54dp"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
