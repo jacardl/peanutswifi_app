@@ -15,12 +15,14 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
     private String SSID = "peanuts";
     private String KEY = "12345678";
     private String URL = "http://miwifi.com/cgi-bin/luci/web";
+//    private String URL = "http://m.taobao.com";
     private final String SUCCESS = "onSuccess";
     private final String FINISH = "onFinished : true";
     private final String NO_EXIST = "Cannot find specified SSID, scan countdown is over!";
     private final String IPERF = "iperf";
     private final String UPLINK_COMPLETE = "Uplink complete:";
-    private final String HTTP_OK = "200 OK";
+    private final String HTTP_200 = "200 OK";
+    private final String HTTP_302 = "302 Found";
     private final int IPERF_TIME = 3600;
     private final int IPERF_TIME2 = 120;
     private final int REPEAT_ASSOC = 100;
@@ -127,7 +129,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<MainActivi
         solo.clickOnButton("start");
         TextView header = (TextView)solo.getView(R.id.headerText);
 //        TextView contents = (TextView)solo.getView(R.id.contentsText);
-        if (solo.waitForText(HTTP_OK, 0, TIMEOUT)) {
+        if (solo.waitForText(HTTP_200, 0, TIMEOUT) || solo.waitForText(HTTP_302, 0, TIMEOUT)) {
         } else {
             fail(String.format(header.getText().toString()));
         }
